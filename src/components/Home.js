@@ -1,26 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Breadcrumb } from 'react-bootstrap';
+import { Jumbotron, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import HomeNav from './HomeNav';
 
-const Home = () => (
-    <div>  
-        <Breadcrumb>
-            <Breadcrumb.Item active>
-                Home
-            </Breadcrumb.Item>
-            <LinkContainer to="/products">
-                <Breadcrumb.Item>
-                    Products
-                </Breadcrumb.Item>
-            </LinkContainer>
-            <LinkContainer to="/cart">
-                <Breadcrumb.Item>
-                    Cart
-                </Breadcrumb.Item>
-            </LinkContainer>
-        </Breadcrumb>
-    </div>
-);
+
+const Home = () => {
+    const { textStyles, jumbotronStyles } = styles;
+    
+    return (
+        <div>  
+            <HomeNav />
+            <Jumbotron style={jumbotronStyles}>
+                <h1 style={textStyles}>Welcome to the Faker Market</h1>
+                <p style={textStyles}>Check out our products!</p>
+                <LinkContainer to="/products">
+                    <Button style={jumbotronStyles} bsStyle="info">Click here</Button>
+                </LinkContainer>
+            </Jumbotron>
+        </div>
+    );
+};
+
+const styles = {
+    textStyles: {
+        textAlign: "center"
+    },
+    jumbotronStyles: {
+        backgroundColor: "#fff5ee",
+        borderColor: 'black',
+        textAlign: "center"
+    }
+};
 
 export default Home;
