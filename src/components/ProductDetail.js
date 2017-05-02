@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProductDetail = () => {
-    
+const ProductDetail = (props) => {
+    console.log(props)
     return (
         <div>
-            <h1>details</h1>
+            <h1>Hello</h1>
         </div>
     )
 }
