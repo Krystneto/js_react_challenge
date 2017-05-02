@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import ProductsNav from './ProductsNav';
 
 class ProductList extends Component {
     render() {
@@ -7,17 +9,18 @@ class ProductList extends Component {
         
         return (
             <div>
-                <ul>
+                <ProductsNav />                
+                <ListGroup>
                 {products.map( (product,i) => {
                     return (
-                        <li key={i}>
-                            <Link to={`/products/${product.id}`}>{product.name}</Link>
-                        </li>
-                    )
-                })}
-                </ul>
+                        <LinkContainer key={product.name} to={`/products/${product.id}`}>
+                            <ListGroupItem>{product.name}</ListGroupItem>
+                        </LinkContainer>
+                        )
+                    })}
+                </ListGroup>
             </div>
-        )
+        );
     }
 }
 
