@@ -2,14 +2,10 @@ const Product = require('../models/product');
 const faker = require('../config/faker.js');
 
 showProducts = (req, res) => {
-    res.send({faker})
+    res.json({faker})
 };
 
-hi = (req, res) => {
-    res.send('hi')
-};
 
 module.exports = {
-    showProducts,
-    hi
-}
+    showProducts
+};
