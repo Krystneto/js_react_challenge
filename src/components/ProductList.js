@@ -5,7 +5,6 @@ import ProductsNav from './ProductsNav';
 
 class ProductList extends Component {
     render() {
-        console.log(this.props)
         const { products } = this.props;
         const { pageHeaderStyles, listGroupStyles } = styles;
 

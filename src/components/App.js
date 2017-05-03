@@ -19,6 +19,7 @@ class App extends Component {
     this.onSelectedProduct = this.onSelectedProduct.bind(this);
     this.handleAddProduct = this.handleAddProduct.bind(this);
     this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
+    this.handleSubmitOrder = this.handleSubmitOrder.bind(this);
 }
   
   componentWillMount() {
@@ -39,7 +40,6 @@ class App extends Component {
   }
   
   onSelectedProduct(product) {
-    console.log(product)
     this.setState({
       selectedProduct: product
     })
@@ -47,9 +47,22 @@ class App extends Component {
 
   handleAddProduct(product) {
     let newProduct = Object.assign(product);
+    let postProductURL = "https://js-challenge-api.herokuapp.com/products"
+    let testPost = "http://localhost:3001/products"
+
     this.setState( prevState => ({
       cart: prevState.cart.concat([newProduct])
     }))
+    
+    fetch(testPost, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+    .then( console.log(`${product.name} added to the cart`) );
+  
   }
 
   handleRemoveProduct(product) {
@@ -60,6 +73,12 @@ class App extends Component {
     }))
   }
   
+  handleSubmitOrder() {
+    this.setState({
+      cart: []
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -67,7 +86,7 @@ class App extends Component {
           <Route exact={true} path="/" component={Home} />
           <Route exact path="/products" render={() => <ProductList products={this.state.products} onSelectedProduct={this.onSelectedProduct}/>} />
           <Route path="/products/:productId" component={() => <ProductDetail products={this.state.products} selectedProduct={this.state.selectedProduct} addProduct={this.handleAddProduct} removeProduct={this.handleRemoveProduct}/>} />
-          <Route path="/cart" component={CartList} />
+          <Route path="/cart" component={() => <CartList cart={this.state.cart} submitOrder={this.handleSubmitOrder} />} />
         </div>
       </Router>
     )

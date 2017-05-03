@@ -14,7 +14,7 @@ const ProductDetail = ({ selectedProduct, addProduct, removeProduct }) => {
             <Grid>
                 <Row>
                     <Col xs={6} xsOffset={3}>
-                        <Thumbnail href={selectedProduct.image} alt={selectedProduct.name} src={selectedProduct.image} />
+                        <Thumbnail alt={selectedProduct.name} src={selectedProduct.image} />
                         <ul className="list-unstyled">
                             <li><u><em>Description:</em></u> {selectedProduct.description}</li>
                             <li><u><em>Price:</em></u> {selectedProduct.price}</li>
