@@ -14,7 +14,7 @@ const ProductDetail = ({ selectedProduct }) => {
             <Grid>
                 <Row>
                     <Col xs={12} md={6} mdOffset={3}>
-                        <Thumbnail href={selectedProduct.image} alt="171x180" src={selectedProduct.image} />
+                        <Thumbnail href={selectedProduct.image} alt={selectedProduct.name} src={selectedProduct.image} />
                     </Col>
                 </Row>
             </Grid>

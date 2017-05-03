@@ -19,9 +19,9 @@ class App extends Component {
 }
   
   componentWillMount() {
-    // const productsURL = "https://js-react-challenge.herokuapp.com/products";
-    const test = "http://localhost:3001/products";
-    fetch(test, {
+    const productsURL = "https://js-react-challenge.herokuapp.com/products";
+    // const test = "http://localhost:3001/products";
+    fetch(productsURL, {
       headers: {
         'Content-Type': 'application/json',
       },
