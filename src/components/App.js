@@ -6,21 +6,24 @@ import {
 import Home from './Home';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
-
+import CartList from './CartList';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
-      selectedProduct: null
+      selectedProduct: null,
+      cart: []
     }
     this.onSelectedProduct = this.onSelectedProduct.bind(this);
+    this.handleAddProduct = this.handleAddProduct.bind(this);
+    this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
 }
   
   componentWillMount() {
-    const productsURL = "https://krystneto.github.io/js_challenge_api/products";
-    // const test = "https://localhost:3001/products";
+    const productsURL = "https://js-challenge-api.herokuapp.com/products.json";
+    // const test = "http://localhost:3001/products.json";
     fetch(productsURL, {
       headers: {
         'Content-Type': 'application/json',
@@ -42,13 +45,29 @@ class App extends Component {
     })
   }
 
+  handleAddProduct(product) {
+    let newProduct = Object.assign(product);
+    this.setState( prevState => ({
+      cart: prevState.cart.concat([newProduct])
+    }))
+  }
+
+  handleRemoveProduct(product) {
+    this.setState( prevState => ({
+      cart: prevState.cart.filter(el => {
+        return el.id !== product.id;
+      })
+    }))
+  }
+  
   render() {
     return (
       <Router>
         <div>
           <Route exact={true} path="/" component={Home} />
           <Route exact path="/products" render={() => <ProductList products={this.state.products} onSelectedProduct={this.onSelectedProduct}/>} />
-          <Route path="/products/:productId" component={() => <ProductDetail products={this.state.products} selectedProduct={this.state.selectedProduct}/>} />
+          <Route path="/products/:productId" component={() => <ProductDetail products={this.state.products} selectedProduct={this.state.selectedProduct} addProduct={this.handleAddProduct} removeProduct={this.handleRemoveProduct}/>} />
+          <Route path="/cart" component={CartList} />
         </div>
       </Router>
     )
