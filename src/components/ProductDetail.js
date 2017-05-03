@@ -1,12 +1,31 @@
 import React from 'react';
+import { Thumbnail, Grid, Row, Col, PageHeader } from 'react-bootstrap';
+import ProductsNav from './ProductsNav'
 
-const ProductDetail = (props) => {
-    console.log(props)
+const ProductDetail = ({ selectedProduct }) => {
+    const { pageHeaderStyle } = styles;
+
     return (
         <div>
-            <h1>Hello</h1>
+            <ProductsNav />
+            <PageHeader style={pageHeaderStyle}>
+                {selectedProduct.name} 
+            </PageHeader>
+            <Grid>
+                <Row>
+                    <Col xs={12} md={6} mdOffset={3}>
+                        <Thumbnail href={selectedProduct.image} alt="171x180" src={selectedProduct.image} />
+                    </Col>
+                </Row>
+            </Grid>
         </div>
-    )
-}
+    );
+};
+
+const styles = {
+    pageHeaderStyle: {
+        textAlign: 'center'
+    }
+};
 
 export default ProductDetail;

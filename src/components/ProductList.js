@@ -17,7 +17,7 @@ class ProductList extends Component {
                     {products.map( (product,i) => {
                         return (
                             <LinkContainer key={product.name} to={`/products/${product.id}`}>
-                                <ListGroupItem onClick={ () => this.props.onSelectedProduct()}>{product.name}</ListGroupItem>
+                                <ListGroupItem onClick={ () => this.props.onSelectedProduct(product)}>{product.name}</ListGroupItem>
                             </LinkContainer>
                             )
                         })

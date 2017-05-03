@@ -6,7 +6,7 @@ import {
 import Home from './Home';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
-import ProductsProp from './ProductsProp';
+
 
 class App extends Component {
   constructor() {
