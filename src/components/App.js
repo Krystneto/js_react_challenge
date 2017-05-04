@@ -67,8 +67,8 @@ class App extends Component {
 
   handleRemoveProduct(product) {
     this.setState( prevState => ({
-      cart: prevState.cart.filter(el => {
-        return el.id !== product.id;
+      cart: prevState.cart.filter(cartItem => {
+        return cartItem.id !== product.id;
       })
     }))
   }
@@ -84,9 +84,24 @@ class App extends Component {
       <Router>
         <div>
           <Route exact={true} path="/" component={Home} />
-          <Route exact path="/products" render={() => <ProductList products={this.state.products} onSelectedProduct={this.onSelectedProduct}/>} />
-          <Route path="/products/:productId" component={() => <ProductDetail products={this.state.products} selectedProduct={this.state.selectedProduct} addProduct={this.handleAddProduct} removeProduct={this.handleRemoveProduct}/>} />
-          <Route path="/cart" component={() => <CartList cart={this.state.cart} submitOrder={this.handleSubmitOrder} />} />
+          <Route 
+            exact={true} path="/products" 
+            component={() => {
+              return <ProductList products={this.state.products} onSelectedProduct={this.onSelectedProduct}/>
+              } 
+            }
+          />
+          <Route 
+            path="/products/:productId" 
+            component={() => {
+              return <ProductDetail products={this.state.products} selectedProduct={this.state.selectedProduct} addProduct={this.handleAddProduct} removeProduct={this.handleRemoveProduct}/>
+              } 
+            }
+          />
+          <Route 
+            path="/cart" 
+            component={() => <CartList cart={this.state.cart} submitOrder={this.handleSubmitOrder} removeProduct={this.handleRemoveProduct}/>} 
+          />
         </div>
       </Router>
     )
