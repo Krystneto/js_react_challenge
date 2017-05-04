@@ -5,7 +5,6 @@ import CartNav from './CartNav';
 
 const CartList = ({ cart, submitOrder, removeProduct }) => {
     const { pageHeaderStyle, liStyle } = styles;
-    console.log(cart);
 
     if (cart.length < 1) {
         return (
