@@ -5,10 +5,10 @@ import HomeNav from './HomeNav';
 
 
 const Home = () => {
-    const { textStyles, jumbotronStyles } = styles;
+    const { textStyles, jumbotronStyles, divStyle } = styles;
     
     return (
-        <div>  
+        <div style={divStyle}>  
             <HomeNav />
             <Jumbotron style={jumbotronStyles}>
                 <h1 style={textStyles}>Welcome to the Faker Market</h1>
@@ -28,7 +28,11 @@ const styles = {
     jumbotronStyles: {
         backgroundColor: "#fff5ee",
         borderColor: 'black',
-        textAlign: "center"
+        textAlign: "center",
+        padding: 100
+    },
+    divStyle: {
+        backgroundColor: "white"
     }
 };
 
